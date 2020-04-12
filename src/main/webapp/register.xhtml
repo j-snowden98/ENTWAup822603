@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Register</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="styles.css"/>
+        <h:form>
+            <h:messages></h:messages>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="firstName" value="Forename:"></h:outputLabel>
+                <h:inputText id="firstName" label="Forename" value="#{registerUser.newUser.forename}" required="true">
+                    <f:validateLength minimum="2" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="lastName" value="Surname:"></h:outputLabel>
+                <h:inputText id="lastName" label="Surname" value="#{registerUser.newUser.surname}" required="true">
+                    <f:validateLength minimum="2" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="username" value="Username:"/>
+                <h:inputText id="username" label="Username" value="#{registerUser.newUser.username}" required="true"/>
+
+                <h:outputLabel for="password" value="Password:"/>
+                <h:inputText id="password" label="Password" value="#{registerUser.newUser.password}" required="true"/>
+                
+                <h:outputLabel for="verPassword" value="Verify Password:"/>
+                <h:inputText id="verPassword" label="Verify Password" value="#{registerUser.newUser.verPass}" required="true"/>
+                
+                <h:outputLabel for="address1" value="Address line 1:"></h:outputLabel>
+                <h:inputText id="address1" label="Address line 1" value="#{registerUser.newUser.address1}">
+                    <f:validateLength minimum="2" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="address2" value="Address line 2:"></h:outputLabel>
+                <h:inputText id="address2" label="Address line 2" value="#{registerUser.newUser.address2}">
+                    <f:validateLength minimum="2" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="town" value="Town:"></h:outputLabel>
+                <h:inputText id="town" label="Town" value="#{registerUser.newUser.town}">
+                    <f:validateLength minimum="2" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="county" value="County:"></h:outputLabel>
+                <h:inputText id="county" label="County" value="#{registerUser.newUser.county}">
+                    <f:validateLength minimum="2" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="postcode" value="Postcode:"></h:outputLabel>
+                <h:inputText id="postcode" label="Postcode" value="#{registerUser.newUser.postcode}">
+                    <f:validateLength minimum="2" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="telephone" value="Telephone:"></h:outputLabel>
+                <h:inputText id="telephone" label="Telephone" value="#{registerUser.newUser.telephone}">
+                    <f:validateLength minimum="3" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                <h:outputLabel for="email" value="Email:"></h:outputLabel>
+                <h:inputText id="email" label="Email" value="#{registerUser.newUser.email}" required="true">
+                    <f:validateLength minimum="3" maximum="30"></f:validateLength>
+                </h:inputText>
+                
+                
+                <h:commandButton value="Cancel" action="login"/>
+                <h:commandButton value="Register" action="registerUser.register"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
