@@ -9,7 +9,7 @@
     <h:body>
         <h:outputStylesheet library="css" name="styles.css"/>
         <h:form>
-            <h:messages></h:messages>
+            <h:messages styleClass="errorMsg"></h:messages>
             <h:panelGrid columns="2">
                 <h:outputLabel for="firstName" value="Forename:"></h:outputLabel>
                 <h:inputText id="firstName" label="Forename" value="#{registerUser.newUser.forename}" required="true">
@@ -67,7 +67,7 @@
                 
                 
                 <h:commandButton value="Cancel" action="login"/>
-                <h:commandButton value="Register" action="registerUser.register"/>
+                <h:commandButton value="Register" action="#{registerUser.register}"/>
             </h:panelGrid>
         </h:form>
     </h:body>
