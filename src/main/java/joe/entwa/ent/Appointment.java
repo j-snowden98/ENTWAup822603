@@ -6,6 +6,7 @@
 package joe.entwa.ent;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -27,8 +28,9 @@ public class Appointment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    //startDate
-    //endDate
+    private String name;
+    private LocalDateTime start;
+    private LocalDateTime end;
     
     @ManyToOne
     private Account owner;
