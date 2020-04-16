@@ -22,11 +22,20 @@ public class RegisterUser {
      * Creates a new instance of RegisterUser
      */
     
+    private String verifyPassword;
     private Account newUser = new Account();
     @EJB
     private AccountService as;
     
     public RegisterUser() {
+    }
+
+    public String getVerifyPassword() {
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
     }
 
     public Account getNewUser() {
@@ -37,8 +46,17 @@ public class RegisterUser {
         this.newUser = newUser;
     }
     
+    public Boolean comparePassword() {
+        return (newUser.getPassword() == null ? verifyPassword == null : newUser.getPassword().equals(verifyPassword));
+    }
+    
     public String register() {
-        as.createAccount(newUser);
-        return "";
+        if(comparePassword()) {
+            as.createAccount(newUser);
+            return "";
+        }
+        else {
+            return "";
+        }
     }
 }

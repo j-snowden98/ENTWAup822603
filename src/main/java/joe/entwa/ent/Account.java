@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,14 +32,16 @@ public class Account implements Serializable {
     private String forename;
     private String surname;
     private String username;
+    
+    @Size(min=5)
     private String password;
-    private String verPass;
     private String address1;
     private String address2;
     private String town;
     private String county;
     private String postcode;
     private String telephone;
+    @Pattern(regexp = "[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "Email format is invalid.")
     private String email;
     
     @ManyToMany 
@@ -91,15 +95,7 @@ public class Account implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getVerPass() {
-        return verPass;
-    }
-
-    public void setVerPass(String verPass) {
-        this.verPass = verPass;
-    }
-
+    
     public String getAddress1() {
         return address1;
     }
