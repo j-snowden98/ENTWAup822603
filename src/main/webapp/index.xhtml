@@ -9,7 +9,7 @@
         <h:outputStylesheet library="css" name="styles.css"/>
         <h:panelGrid columns="2">
             <h:panelGroup>
-                <h:outputLabel>Ultimate enterprise grade contact and diary facility</h:outputLabel>
+                <h:outputLabel>ENTWA contacts and online diary facility</h:outputLabel>
             </h:panelGroup>
             
             <h:panelGroup>
@@ -17,12 +17,12 @@
                     <h:messages></h:messages>
                     <h:panelGrid columns="2">
                         <h:outputLabel value="Username"/>
-                        <h:inputText id="username" label="Username"/>
+                        <h:inputText id="username" label="Username" value="#{loginCtrl.username}"/>
 
                         <h:outputLabel value="Password"/>
-                        <h:inputText id="password" label="Password"/>
+                        <h:inputSecret id="password" label="Password" value="#{loginCtrl.password}"/>
                         <h:commandButton value="Register" action="register"/>
-                        <h:commandButton value="Log in" action="contacts"/>
+                        <h:commandButton value="Log in" action="#{loginCtrl.attemptLogin}"/>
                     </h:panelGrid>
                 </h:form>
             </h:panelGroup>

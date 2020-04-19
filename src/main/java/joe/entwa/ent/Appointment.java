@@ -38,6 +38,16 @@ public class Appointment implements Serializable {
     @ManyToMany
     private List<Account> participants = new ArrayList<>();
 
+    public Appointment(String name, LocalDateTime startTime, LocalDateTime endTime, Account owner) {
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.owner = owner;
+    }
+
+    public Appointment() {
+    }
+
     public Long getId() {
         return id;
     }

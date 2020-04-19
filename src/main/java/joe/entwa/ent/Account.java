@@ -23,7 +23,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Account implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +32,7 @@ public class Account implements Serializable {
     private String surname;
     private String username;
     
-    @Size(min=5)
+    @Size(min=5, message = "Password must be at least 5 characters in length")
     private String password;
     private String address1;
     private String address2;
@@ -41,7 +40,7 @@ public class Account implements Serializable {
     private String county;
     private String postcode;
     private String telephone;
-    @Pattern(regexp = "[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "Email format is invalid.")
+    @Pattern(regexp = "[a-zA-Z0-9.]+@[a-zA-Z0-9]+[.a-zA-Z0-9]+", message = "Email format is invalid.")
     private String email;
     
     @ManyToMany 
@@ -55,6 +54,23 @@ public class Account implements Serializable {
     
     @ManyToMany(mappedBy="participants")
     private List<Appointment> attendAppointments = new ArrayList<>();
+    
+    public Account() {
+    }
+    
+    public Account(String forename, String surname, String username, String password, String address1, String address2, String town, String county, String postcode, String telephone, String email) {
+        this.forename = forename;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.town = town;
+        this.county = county;
+        this.postcode = postcode;
+        this.telephone = telephone;
+        this.email = email;
+    }
     
     public Long getId() {
         return id;

@@ -10,7 +10,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import joe.entwa.ent.Account;
 import joe.entwa.ent.Appointment;
-import joe.entwa.pers.AccountFacade;
 import joe.entwa.pers.AppointmentFacade;
 
 /**
@@ -22,9 +21,6 @@ public class AppointmentService {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
-    @EJB
-    private AccountFacade acnt;
     
     @EJB
     private AppointmentFacade apmt;
