@@ -5,6 +5,7 @@
  */
 package joe.entwa.bus;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import joe.entwa.ent.Account;
@@ -26,5 +27,15 @@ public class AccountService {
     public Account createAccount(Account a) {
         af.create(a);
         return a;
+    }
+    
+    /*public Account loginAttempt(String username, String password) {
+        Account a = af.;
+        return a;
+    }*/
+    
+    public List<Account> loadAccounts() {
+        List accounts = af.findAll();
+        return accounts;
     }
 }
