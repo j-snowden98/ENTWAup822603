@@ -5,8 +5,10 @@
  */
 package joe.entwa.ctrl;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import joe.entwa.bus.TestDataService;
 
 /**
  *
@@ -14,22 +16,26 @@ import javax.enterprise.context.Dependent;
  */
 @Named(value = "startCtrl")
 @Dependent
-public class Start {
+public class StartCtrl {
 
     /**
-     * Creates a new instance of Start
+     * Creates a new instance of StartCtrl
      */
-    private Boolean testDataAdded = false;
+    private String testDataAdded = "Test data added: ";
     
-    public Start() {
+    @EJB
+    private TestDataService ds;
+    
+    public StartCtrl() {
     }
     
-    public Boolean getTestDataAdded() {
+    public String getTestDataAdded() {
         return testDataAdded;
     }
     
     public String insertTestData() {
-        testDataAdded = true;
+        ds.insertTestData();
+        testDataAdded += "True";
         return "";
     }
     
