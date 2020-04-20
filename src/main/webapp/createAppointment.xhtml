@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Create Appointment</title>
+    </h:head>
+    <h:body>
+        <h:panelGrid columns="2">
+            <h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputLabel for="description" value="Description:"></h:outputLabel>
+                        <h:inputText id="description" label="Description" value="#{createAppointment.newApp.description}" required="true"/>
+                        <h:panelGroup></h:panelGroup>
+                        
+                        <h:outputLabel for="startDate" value="Start:"></h:outputLabel>
+                        <h:inputText id="startDate" label="Start Date" value="#{createAppointment.newApp.startDate}" required="true"/>
+                        <h:inputText id="startTime" label="Start Time" value="#{createAppointment.newApp.startTime}" required="true"/>
+                        
+                        <h:outputLabel for="endDate" value="End:"></h:outputLabel>
+                        <h:inputText id="endDate" label="End Date" value="#{createAppointment.newApp.endDate}" required="true"/>
+                        <h:inputText id="endTime" label="End Time" value="#{createAppointment.newApp.endTime}" required="true"/>
+                    </h:panelGrid>
+                </h:form>
+            </h:panelGroup>
+            
+            <h:panelGroup>
+                <h:form>
+                    <h:selectOneListbox>
+                        
+                    </h:selectOneListbox>
+                    
+                    <h:panelGrid columns="2">
+                        <h:commandButton value="Add"></h:commandButton>
+                        <h:commandButton value="Remove"></h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+            </h:panelGroup>
+        </h:panelGrid>
+    </h:body>
+</html>
+

@@ -6,7 +6,8 @@
 package joe.entwa.ent;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -29,8 +30,10 @@ public class Appointment implements Serializable {
     private Long id;
     
     private String name;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDate startDate;
+    private LocalTime startTime;
+    private LocalDate endDate;
+    private LocalTime endTime;
     
     @ManyToOne
     private Account owner;
@@ -38,9 +41,11 @@ public class Appointment implements Serializable {
     @ManyToMany
     private List<Account> participants = new ArrayList<>();
 
-    public Appointment(String name, LocalDateTime startTime, LocalDateTime endTime, Account owner) {
+    public Appointment(String name, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, Account owner) {
         this.name = name;
+        this.startDate = startDate;
         this.startTime = startTime;
+        this.endDate = endDate;
         this.endTime = endTime;
         this.owner = owner;
     }
@@ -64,19 +69,35 @@ public class Appointment implements Serializable {
         this.name = name;
     }
 
-    public LocalDateTime getStartTime() {
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
@@ -95,9 +116,8 @@ public class Appointment implements Serializable {
     public void setParticipants(List<Account> participants) {
         this.participants = participants;
     }
-    
-    
 
+    
     @Override
     public int hashCode() {
         int hash = 0;
