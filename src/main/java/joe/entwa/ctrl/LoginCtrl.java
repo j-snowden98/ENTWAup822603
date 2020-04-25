@@ -5,19 +5,20 @@
  */
 package joe.entwa.ctrl;
 
-import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import joe.entwa.bus.AccountService;
 import joe.entwa.ent.Account;
+import joe.entwa.login.LoginSession;
 
 /**
  *
  * @author Joe
  */
 @Named(value = "loginCtrl")
-@Dependent
+@RequestScoped
 public class LoginCtrl {
 
     /**
@@ -25,10 +26,12 @@ public class LoginCtrl {
      */
     private String username;
     private String password;
-    private List<Account> allAccounts = null;
     
     @EJB
     private AccountService as;
+    
+    @Inject
+    private LoginSession loginSession;
     
     public LoginCtrl() {
     }
@@ -48,15 +51,16 @@ public class LoginCtrl {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public List<Account> getAllAccounts() {
-        if (allAccounts == null) {
-            allAccounts = as.loadAccounts();
-        }
-        return allAccounts;
-    }
     
     public String attemptLogin() {
-        return "";
+        Account currentUser = as.loginAttempt(username, password);
+        if(currentUser != null) {
+            loginSession.setUser(currentUser);
+            return "myContacts";
+        }
+        else {
+            return "";
+        }
+        
     }
 }

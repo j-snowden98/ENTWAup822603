@@ -23,9 +23,6 @@
                         <h:outputLabel value="Password"/>
                         <h:inputSecret id="password" label="Password" value="#{loginCtrl.password}"/>
                         
-                        <h:selectOneMenu value="#{controller.newA}">
-                            <f:selectItems value="#{loginCtrl.allAccounts}" itemLabel="#{a.username}" itemValue="#{a.id}" var="a"/>
-                        </h:selectOneMenu>
                         
                         <h:commandButton value="Register" action="register"/>
                         <h:commandButton value="Log in" action="#{loginCtrl.attemptLogin}"/>

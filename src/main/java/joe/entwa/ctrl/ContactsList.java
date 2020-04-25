@@ -8,7 +8,9 @@ package joe.entwa.ctrl;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import joe.entwa.ent.Account;
+import joe.entwa.login.LoginSession;
 
 /**
  *
@@ -17,7 +19,10 @@ import joe.entwa.ent.Account;
 @Named(value = "contactsList")
 @Dependent
 public class ContactsList {
-    private List<Account> contacts;
+    
+    @Inject
+    LoginSession loginSession;
+    
     /**
      * Creates a new instance of ContactsList
      */
@@ -25,10 +30,6 @@ public class ContactsList {
     }
 
     public List<Account> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Account> contacts) {
-        this.contacts = contacts;
+        return loginSession.getUser().getContacts();
     }
 }

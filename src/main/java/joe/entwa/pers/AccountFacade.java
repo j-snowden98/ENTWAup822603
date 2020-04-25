@@ -5,9 +5,11 @@
  */
 package joe.entwa.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import joe.entwa.ent.Account;
 
 /**
@@ -27,6 +29,28 @@ public class AccountFacade extends AbstractFacade<Account> {
 
     public AccountFacade() {
         super(Account.class);
+    }
+    
+    public Boolean checkUnique(String newUsername) {
+        TypedQuery<Account> findUser = em.createQuery("SELECT a FROM Account a WHERE a.username = :username", Account.class);
+        List<Account> results = findUser.setParameter("username", newUsername).getResultList();
+        return results.isEmpty();
+    }
+
+    public Account authenticate(String username, String password) {
+        TypedQuery<Account> findUser = em.createQuery("SELECT a FROM Account a WHERE a.username = :username", Account.class);
+        List<Account> results = findUser.setParameter("username", username).getResultList();
+        if(results.isEmpty()) {
+            return null;
+        }
+        else {
+            if(password == null ? results.get(0).getPassword() == null : password.equals(results.get(0).getPassword())) {
+                return results.get(0);
+            }
+            else {
+                return null;
+            }
+        }
     }
     
 }

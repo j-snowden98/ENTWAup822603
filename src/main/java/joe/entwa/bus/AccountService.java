@@ -25,14 +25,21 @@ public class AccountService {
     private AccountFacade af;
     
     public Account createAccount(Account a) {
-        af.create(a);
-        return a;
+        Boolean usernameUnique = af.checkUnique(a.getUsername());
+        if(usernameUnique) {
+            Account newAc = af.create(a);
+            return newAc;
+        }
+        else
+            return null;
+        
     }
     
-    /*public Account loginAttempt(String username, String password) {
-        Account a = af.;
+    public Account loginAttempt(String username, String password) {
+        Account a = af.authenticate(username, password);
         return a;
-    }*/
+        
+    }
     
     public List<Account> loadAccounts() {
         List accounts = af.findAll();

@@ -17,14 +17,12 @@ import joe.entwa.ent.Account;
 @Named(value = "loginSession")
 @SessionScoped
 public class LoginSession implements Serializable {
-
+    private Account user;
+    
     /**
      * Creates a new instance of LoginSession
      */
-    
-    private Account user;
-    
-    public LoginSession() {
+    LoginSession() {
     }
 
     public Account getUser() {

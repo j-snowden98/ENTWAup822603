@@ -8,8 +8,10 @@ package joe.entwa.ctrl;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import joe.entwa.bus.AccountService;
 import joe.entwa.ent.Account;
+import joe.entwa.login.LoginSession;
 
 /**
  *
@@ -26,6 +28,9 @@ public class RegisterUser {
     private Account newUser = new Account();
     @EJB
     private AccountService as;
+    
+    @Inject
+    LoginSession loginSession;
     
     public RegisterUser() {
     }
@@ -52,8 +57,15 @@ public class RegisterUser {
     
     public String register() {
         if(comparePassword()) {
-            as.createAccount(newUser);
-            return "";
+            Account createdAc = as.createAccount(newUser);
+            if(createdAc != null) {
+                loginSession.setUser(createdAc);
+                return "myContacts";
+            }
+            else {
+                //error msg for duplicate username
+                return "";
+            }
         }
         else {
             return "";
