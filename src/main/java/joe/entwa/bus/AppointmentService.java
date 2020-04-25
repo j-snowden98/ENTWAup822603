@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import joe.entwa.ent.Account;
 import joe.entwa.ent.Appointment;
+import joe.entwa.pers.AccountFacade;
 import joe.entwa.pers.AppointmentFacade;
 
 /**
@@ -23,13 +24,22 @@ public class AppointmentService {
     // "Insert Code > Add Business Method")
     
     @EJB
+    private AccountFacade acc;
+    
+    @EJB
     private AppointmentFacade apmt;
     
     public Appointment createAppointment(Appointment a, Account owner, ArrayList<Account> participants) {
         a.setOwner(owner);
+        apmt.create(a);
         a.getParticipants().addAll(participants);
         
-        apmt.create(a);
+        participants.forEach((p) -> {
+            p.getAttendAppointments().add(a);
+            acc.edit(p);
+        });
+        apmt.edit(a);
+        
         return a;
     }
     
