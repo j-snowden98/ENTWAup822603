@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Contacts</title>
+        <title>Appointments</title>
     </h:head>
     <h:body>
         <h:panelGrid columns="1">
@@ -12,33 +12,41 @@
                 <h:commandButton value="Contacts" action="myContacts"/>
                 <h:commandButton value="Diary" action="myAppointments"/>
                 <h:outputText value="#{loginSession.user.username}"/>
-                <h:outputText value="#{loginSession.user.id}"/>
             </h:panelGroup>
-            <h:dataTable value="#{contactsList.contacts}" var="c">
+            <h:dataTable value="#{appointmentsList.appointments}" var="a">
                 <h:column>
                     <!-- column header -->
-                    <f:facet name="header">Forename</f:facet>
+                    <f:facet name="header">Description</f:facet>
                     <!-- row record -->
-                    #{c.forename}
+                    #{a.name}
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">Surname</f:facet>
-                    #{c.surname}
+                    <f:facet name="header">Start Date</f:facet>
+                    #{a.startDate}
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">Email</f:facet>
-                    #{c.email}
+                    <f:facet name="header">Start Time</f:facet>
+                    #{a.startTime}
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">Telephone</f:facet>
-                    #{c.telephone}
+                    <f:facet name="header">End Date</f:facet>
+                    #{a.endDate}
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">End Time</f:facet>
+                    #{a.endTime}
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">Owner</f:facet>
+                    #{a.owner.username}
                 </h:column>
             </h:dataTable>
         </h:panelGrid>
-        
     </h:body>
 </html>
 

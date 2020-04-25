@@ -5,9 +5,12 @@
  */
 package joe.entwa.bus;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import joe.entwa.ent.Account;
+import joe.entwa.ent.Appointment;
 import joe.entwa.pers.AccountFacade;
 import joe.entwa.pers.AppointmentFacade;
 
@@ -59,9 +62,30 @@ public class TestDataService {
         acc.create(user10);
         
         user1.getContacts().add(user2);
-        user1.getContacts().add(user3);
-        user1.getContacts().add(user10);
-        acc.edit(user1);
+        user2.getContacts().add(user1);
         
+        user1.getContacts().add(user3);
+        user3.getContacts().add(user1);
+        
+        user1.getContacts().add(user10);
+        user10.getContacts().add(user1);
+        
+        Appointment appoint1 = new Appointment("Meeting 1", LocalDate.parse("2020-01-08"), LocalTime.parse("09:00"), LocalDate.parse("2020-01-08"), LocalTime.parse("11:00"), user1);
+        app.create(appoint1);
+        appoint1.getParticipants().add(user1);
+        appoint1.getParticipants().add(user2);
+        appoint1.getParticipants().add(user3);
+        appoint1.getParticipants().add(user10);
+        
+        user1.getAttendAppointments().add(appoint1);
+        user2.getAttendAppointments().add(appoint1);
+        user3.getAttendAppointments().add(appoint1);
+        user10.getAttendAppointments().add(appoint1);
+        
+        app.edit(appoint1);
+        acc.edit(user1);
+        acc.edit(user2);
+        acc.edit(user3);
+        acc.edit(user10);
     }
 }
