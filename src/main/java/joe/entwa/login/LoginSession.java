@@ -32,4 +32,8 @@ public class LoginSession implements Serializable {
     public void setUser(Account user) {
         this.user = user;
     }
+    
+    public String logOut() {
+        return "index";
+    }
 }

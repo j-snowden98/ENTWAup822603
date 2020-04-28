@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
-        <title>Add Contacts</title>
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
         <b:navBar brand="UP822603" brandHref="#" fluid="true">
@@ -19,18 +19,6 @@
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>
-        
-        <h:form>
-            <b:dataTable value="#{contactsList.contacts}" var="c">
-                <b:dataTableColumn value="#{c.forename}" />
-
-                <b:dataTableColumn value="#{c.surname}"/>
-                
-                <b:dataTableColumn value="#{c.email}"/>
-                
-                <b:dataTableColumn value="#{c.telephone}"/>
-            </b:dataTable>
-        </h:form>
     </h:body>
 </html>
 

@@ -5,6 +5,7 @@
  */
 package joe.entwa.bus;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import joe.entwa.ent.Account;
@@ -29,5 +30,11 @@ public class ContactService {
         af.edit(user);
         af.edit(newContact);
         return user;
+    }
+    
+    public List<Account> getOtherAccounts(Account user) {
+        List<Account> otherAccounts = af.findAll();
+        //otherAccounts.removeAll(user.getContacts());
+        return otherAccounts;
     }
 }
