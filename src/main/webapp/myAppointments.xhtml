@@ -20,13 +20,8 @@
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>
-        <h:dataTable value="#{appointmentsList.appointments}" var="a">
-            <h:column>
-                <!-- column header -->
-                <f:facet name="header">Description</f:facet>
-                <!-- row record -->
-                #{a.name}
-            </h:column>
+        <b:dataTable value="#{appointmentsList.appointments}" var="a">
+            <b:dataTableColumn value="#{a.name}"/>
 
             <h:column>
                 <f:facet name="header">Start Date</f:facet>
@@ -48,11 +43,7 @@
                 #{a.endTime}
             </h:column>
 
-            <h:column>
-                <f:facet name="header">Owner</f:facet>
-                #{a.owner.username}
-            </h:column>
-        </h:dataTable>
+            <b:dataTableColumn value="#{a.owner.username}"/>
+        </b:dataTable>
     </h:body>
 </html>
-
