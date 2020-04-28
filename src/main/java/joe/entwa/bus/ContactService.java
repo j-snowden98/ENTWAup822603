@@ -34,7 +34,8 @@ public class ContactService {
     
     public List<Account> getOtherAccounts(Account user) {
         List<Account> otherAccounts = af.findAll();
-        //otherAccounts.removeAll(user.getContacts());
+        otherAccounts.remove(user);
+        otherAccounts.removeAll(user.getContacts());
         return otherAccounts;
     }
 }

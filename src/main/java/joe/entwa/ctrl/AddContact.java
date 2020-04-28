@@ -5,33 +5,43 @@
  */
 package joe.entwa.ctrl;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import joe.entwa.bus.ContactService;
 import joe.entwa.ent.Account;
+import joe.entwa.login.LoginSession;
 
 /**
  *
  * @author Joe
  */
 @Named(value = "addContact")
-@Dependent
+@RequestScoped
 public class AddContact {
-
-    /**
-     * Creates a new instance of AddContact
-     */
+    @Inject
+    private LoginSession loginSession;
     
-    private Account user;
+    private List<Account> accounts;
     
     @EJB
     private ContactService cs;
     
+    /**
+     * Creates a new instance of AddContact
+     */
     public AddContact() {
+        
     }
-    
-    public String addToContacts() {
-        return "";
+
+    public List<Account> getAccounts() {
+        accounts = cs.getOtherAccounts(loginSession.getUser());
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 }

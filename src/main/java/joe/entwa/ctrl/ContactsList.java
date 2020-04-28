@@ -6,8 +6,8 @@
 package joe.entwa.ctrl;
 
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import joe.entwa.ent.Account;
 import joe.entwa.login.LoginSession;
@@ -17,7 +17,7 @@ import joe.entwa.login.LoginSession;
  * @author Joe
  */
 @Named(value = "contactsList")
-@Dependent
+@RequestScoped
 public class ContactsList {
     
     @Inject
