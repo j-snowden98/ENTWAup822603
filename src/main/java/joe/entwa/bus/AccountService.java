@@ -32,13 +32,11 @@ public class AccountService {
         }
         else
             return null;
-        
     }
     
     public Account loginAttempt(String username, String password) {
         Account a = af.authenticate(username, password);
         return a;
-        
     }
     
     public List<Account> loadAccounts() {

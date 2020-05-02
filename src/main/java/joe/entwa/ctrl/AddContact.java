@@ -40,8 +40,10 @@ public class AddContact {
         accounts = cs.getOtherAccounts(loginSession.getUser());
         return accounts;
     }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+    
+    public String addToContacts(Account a) {
+        Account updatedUser = cs.addContact(loginSession.getUser(), a);
+        loginSession.setUser(updatedUser);
+        return "";
     }
 }

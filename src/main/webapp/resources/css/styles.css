@@ -22,3 +22,14 @@ root {
 .errorMsg {
     color: red;
 }
+
+.marginX {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.buttonRow {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 0.5rem;
+}
