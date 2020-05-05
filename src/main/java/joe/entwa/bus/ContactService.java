@@ -25,10 +25,7 @@ public class ContactService {
     
     public Account addContact(Account user, Account newContact) {
         user.getContacts().add(newContact);
-        newContact.getContacts().add(user);
-        
         af.edit(user);
-        af.edit(newContact);
         return user;
     }
     
