@@ -2,34 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <h:head>
         <title>Log in or register</title>
     </h:head>
     <h:body>
         <h:outputStylesheet library="css" name="styles.css"/>
-        <h:panelGrid columns="2">
-            <h:panelGroup>
-                <h:outputLabel>ENTWA contacts and online diary facility</h:outputLabel>
-            </h:panelGroup>
-            
-            <h:panelGroup>
-                <h:form>
-                    <h:messages></h:messages>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Username"/>
-                        <h:inputText id="username" label="Username" value="#{loginCtrl.username}"/>
+        <b:panel collapsible="false">
+            <f:facet name="heading">
+                <h:outputText value="Please log in or register to get started"/>
+            </f:facet>
+            <b:form inline="true">
+                <h:messages></h:messages>
+                <h:panelGrid columns="1" cellspacing="5">
+                    <b:inputText id="username" label="Username" value="#{loginCtrl.username}" labelStyle="width:80px;" style-class="buttonRow"/>
+                    <b:inputSecret id="password" label="Password" value="#{loginCtrl.password}" labelStyle="width:80px;" style-class="buttonRow"/>
 
-                        <h:outputLabel value="Password"/>
-                        <h:inputSecret id="password" label="Password" value="#{loginCtrl.password}"/>
-                        
-                        
-                        <h:commandButton value="Register" action="register"/>
-                        <h:commandButton value="Log in" action="#{loginCtrl.attemptLogin}"/>
-                    </h:panelGrid>
-                </h:form>
-            </h:panelGroup>
-        </h:panelGrid>
+                    <b:formGroup>
+                        <b:commandButton value="Register" action="register" style-class="marginX"/>
+                        <b:commandButton value="Log in" action="#{loginCtrl.attemptLogin}" style-class="marginX"/>
+                    </b:formGroup>
+                </h:panelGrid>
+            </b:form>
+        </b:panel>
     </h:body>
 </html>
-
