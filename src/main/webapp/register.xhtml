@@ -16,34 +16,34 @@
             <b:form inline="true">
                 <h:messages styleClass="errorMsg"></h:messages>
                 <h:panelGrid columns="1" cellspacing="5">
-                    <b:inputText id="firstName" label="Forename" value="#{registerUser.newUser.forename}" required="true" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="firstName" label="Forename" value="#{registerUser.newUser.forename}" required="true" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="lastName" label="Surname" value="#{registerUser.newUser.surname}" required="true" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="lastName" label="Surname" value="#{registerUser.newUser.surname}" required="true" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="username" label="Username" value="#{registerUser.newUser.username}" required="true" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="username" label="Username" value="#{registerUser.newUser.username}" required="true" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputSecret id="password" label="Password" value="#{registerUser.newUser.password}" required="true" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputSecret id="password" label="Password" value="#{registerUser.newUser.password}" required="true" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputSecret id="verPassword" label="Verify Password" value="#{registerUser.verifyPassword}" required="true" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputSecret id="verPassword" label="Verify Password" value="#{registerUser.verifyPassword}" required="true" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="address1" label="Address line 1" value="#{registerUser.newUser.address1}" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="address1" label="Address line 1" value="#{registerUser.newUser.address1}" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="address2" label="Address line 2" value="#{registerUser.newUser.address2}" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="address2" label="Address line 2" value="#{registerUser.newUser.address2}" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="town" label="Town" value="#{registerUser.newUser.town}" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="town" label="Town" value="#{registerUser.newUser.town}" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="county" label="County" value="#{registerUser.newUser.county}" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="county" label="County" value="#{registerUser.newUser.county}" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="postcode" label="Postcode" value="#{registerUser.newUser.postcode}" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="postcode" label="Postcode" value="#{registerUser.newUser.postcode}" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="telephone" label="Telephone" value="#{registerUser.newUser.telephone}" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="telephone" label="Telephone" value="#{registerUser.newUser.telephone}" labelStyle="width:120px;" styleClass="buttonRow"/>
 
-                    <b:inputText id="email" label="Email" value="#{registerUser.newUser.email}" required="true" labelStyle="width:120px;" style-class="buttonRow"/>
+                    <b:inputText id="email" label="Email" value="#{registerUser.newUser.email}" required="true" labelStyle="width:120px;" styleClass="buttonRow"/>
 
 
                     <b:formGroup>
-                        <b:commandButton value="Cancel" action="index" style-class="marginX"/>
-                        <b:commandButton value="Register" action="#{registerUser.register}" style-class="marginX"/>
+                        <b:commandButton value="Cancel" action="index" styleClass="marginX"/>
+                        <b:commandButton value="Register" action="#{registerUser.register}" styleClass="marginX"/>
                     </b:formGroup>
                 </h:panelGrid>
             </b:form>

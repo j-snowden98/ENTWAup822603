@@ -29,7 +29,7 @@ public class Appointment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String name;
+    private String description;
     private LocalDate startDate;
     private LocalTime startTime;
     private LocalDate endDate;
@@ -41,8 +41,8 @@ public class Appointment implements Serializable {
     @ManyToMany
     private List<Account> participants = new ArrayList<>();
 
-    public Appointment(String name, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, Account owner) {
-        this.name = name;
+    public Appointment(String description, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, Account owner) {
+        this.description = description;
         this.startDate = startDate;
         this.startTime = startTime;
         this.endDate = endDate;
@@ -61,12 +61,12 @@ public class Appointment implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDate getStartDate() {

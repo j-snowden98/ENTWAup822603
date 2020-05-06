@@ -26,7 +26,7 @@
                 <b:button value="Add Appointment" href="createAppointment.xhtml"/>
             </b:row>
             <b:dataTable value="#{appointmentsList.appointments}" var="a">
-                <b:dataTableColumn value="#{a.name}"/>
+                <b:dataTableColumn value="#{a.description}"/>
 
                 <b:dataTableColumn value="#{a.startDate}" label="Start Date"/>
 
