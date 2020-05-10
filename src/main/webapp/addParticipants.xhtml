@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Add Contacts</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="styles.css"/>
+        <b:navBar brand="UP822603" brandHref="#" fluid="true">
+            <b:navbarLinks>
+                <b:navLink value="Contacts" href="myContacts.xhtml"></b:navLink>
+                <b:navLink value="Diary" href="myAppointments.xhtml"></b:navLink>
+            </b:navbarLinks>
+            <b:navbarLinks pull="right">
+                <b:dropMenu value="#{loginSession.user.username}">
+                    <b:navLink value="Edit details" href="editAccount.xhtml"></b:navLink>
+                    <b:navLink value="Log out" action="#{loginSession.logOut}"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+        </b:navBar>
+        
+        <h:form styleClass="marginX">
+            <b:row styleClass="buttonRow">
+                <b:button value="Back" href="createAppointment.xhtml"/>
+            </b:row>
+            <b:dataTable value="#{participantCtrl.accounts}" var="acc">
+                <b:dataTableColumn value="#{acc.forename}"/>
+
+                <b:dataTableColumn value="#{acc.surname}"/>
+                
+                <b:dataTableColumn value="#{acc.email}"/>
+                
+                <b:dataTableColumn value="#{acc.telephone}"/>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Add"/>
+                    </f:facet>
+
+                    <b:commandButton id="addThisAccount" action="#{participantCtrl.addToParticipants(acc)}" value="Add"/>
+                </h:column>
+            </b:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

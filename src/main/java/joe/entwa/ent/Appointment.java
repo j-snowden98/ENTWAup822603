@@ -7,6 +7,7 @@ package joe.entwa.ent;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class Appointment implements Serializable {
         this.endTime = endTime;
         this.owner = owner;
     }
-
+    
     public Appointment() {
     }
 
@@ -101,6 +102,8 @@ public class Appointment implements Serializable {
         this.endTime = endTime;
     }
 
+    
+    
     public Account getOwner() {
         return owner;
     }

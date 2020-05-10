@@ -1,43 +1,76 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Create Appointment</title>
     </h:head>
     <h:body>
-        <h:panelGrid columns="2">
-            <h:panelGroup>
-                <h:form>
-                    <h:panelGrid columns="3">
-                        <h:outputLabel for="description" value="Description:"></h:outputLabel>
-                        <h:inputText id="description" label="Description" value="#{createAppointment.newApp.description}" required="true"/>
-                        <h:panelGroup></h:panelGroup>
-                        
-                        <h:outputLabel for="startDate" value="Start:"></h:outputLabel>
-                        <h:inputText id="startDate" label="Start Date" value="#{createAppointment.newApp.startDate}" required="true"/>
-                        <h:inputText id="startTime" label="Start Time" value="#{createAppointment.newApp.startTime}" required="true"/>
-                        
-                        <h:outputLabel for="endDate" value="End:"></h:outputLabel>
-                        <h:inputText id="endDate" label="End Date" value="#{createAppointment.newApp.endDate}" required="true"/>
-                        <h:inputText id="endTime" label="End Time" value="#{createAppointment.newApp.endTime}" required="true"/>
-                    </h:panelGrid>
-                </h:form>
-            </h:panelGroup>
+        <h:outputStylesheet library="css" name="styles.css"/>
+        <b:navBar brand="UP822603" brandHref="#" fluid="true">
+            <b:navbarLinks>
+                <b:navLink value="Contacts" href="myContacts.xhtml"></b:navLink>
+                <b:navLink value="Diary" href="myAppointments.xhtml"></b:navLink>
+            </b:navbarLinks>
+            <b:navbarLinks pull="right">
+                <b:dropMenu value="#{loginSession.user.username}">
+                    <b:navLink value="Edit details" href="editAccount.xhtml"></b:navLink>
+                    <b:navLink value="Log out" action="#{loginSession.logOut}"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+        </b:navBar>
+        
+        <b:panel collapsible="false">
+            <h:outputText value="Create Appointment"/>
+            <b:form inline="true">
+                <h:messages styleClass="errorMsg"></h:messages>
+                <h:panelGrid columns="2">
+                    <h:panelGroup>
+                        <h:panelGrid columns="1">
+                            <b:inputText id="name" label="Description" value="#{appointmentCtrl.newApp.description}" required="true" labelStyle="width:90px;" styleClass="buttonRow"/>
+                            <b:dateTimePicker id="startDate"  format="DD/MM/YYYY" label="Start Date" value="#{appointmentCtrl.newApp.startDate}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
+                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
+                            </b:dateTimePicker>
+                                
+                            <b:dateTimePicker id="startTime"  format="HH:mm" label="Start Time" value="#{appointmentCtrl.newApp.startTime}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
+                                <f:convertDateTime type="localTime" pattern="HH:mm"/>
+                            </b:dateTimePicker>
+                            
+                            <b:dateTimePicker id="endDate"  format="DD/MM/YYYY" label="End Date" value="#{appointmentCtrl.newApp.endDate}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
+                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
+                            </b:dateTimePicker>
+                                
+                            <b:dateTimePicker id="endTime"  format="HH:mm" label="End Time" value="#{appointmentCtrl.newApp.endTime}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
+                                <f:convertDateTime type="localTime" pattern="HH:mm"/>
+                            </b:dateTimePicker>
+                        </h:panelGrid>
+                        <b:formGroup>
+                            <b:button value="Cancel" href="myAppointments.xhtml"/>
+                            <b:commandButton value="Save" action="save"/>
+                        </b:formGroup>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <b:row styleClass="buttonRow">
+                            <b:commandButton value="Add Participants" action="addParticipants"/>
+                        </b:row>
+                        <b:dataTable value="#{appointmentCtrl.newApp.participants}" var="p">
+                            <b:dataTableColumn value="#{p.forename}"/>
+                            <b:dataTableColumn value="#{p.surname}"/>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Remove"/>
+                                </f:facet>
+                                <b:commandButton id="removeThisParticipant" action="#{appointmentCtrl.removeParticipant(p)}" value="Remove"/>
+                            </h:column>
+                        </b:dataTable>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </b:form>
             
-            <h:panelGroup>
-                <h:form>
-                    <h:selectOneListbox>
-                        
-                    </h:selectOneListbox>
-                    
-                    <h:panelGrid columns="2">
-                        <h:commandButton value="Add"></h:commandButton>
-                        <h:commandButton value="Remove"></h:commandButton>
-                    </h:panelGrid>
-                </h:form>
-            </h:panelGroup>
-        </h:panelGrid>
+        </b:panel>
     </h:body>
 </html>
 

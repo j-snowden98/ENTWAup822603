@@ -5,11 +5,9 @@
  */
 package joe.entwa.ctrl;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.inject.Inject;
 import joe.entwa.bus.AppointmentService;
 import joe.entwa.ent.Account;
@@ -20,10 +18,10 @@ import joe.entwa.login.LoginSession;
  *
  * @author Joe
  */
-@Named(value = "createAppointment")
+@Named(value = "appointmentCtrl")
 @RequestScoped
-public class CreateAppointment {
-    private Appointment newApp;
+public class AppointmentCtrl {
+    private Appointment newApp = new Appointment();
     
     @Inject
     private LoginSession loginSession;
@@ -31,32 +29,37 @@ public class CreateAppointment {
     @EJB
     private AppointmentService aps;
     
-    private ArrayList<Account> participants;
     /**
      * Creates a new instance of CreateAppointment
      */
-    public CreateAppointment() {
+    public AppointmentCtrl() {
     }
 
     public Appointment getNewApp() {
+        if(loginSession.getCurrentApp() != null) {
+            newApp = loginSession.getCurrentApp();
+        }
         return newApp;
     }
 
     public void setNewApp(Appointment newApp) {
         this.newApp = newApp;
-    }
-
-    public ArrayList<Account> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(ArrayList<Account> participants) {
-        this.participants = participants;
+        this.loginSession.setCurrentApp(newApp);
     }
     
-    public String save() {
-        Appointment a = aps.createAppointment(newApp, loginSession.getUser(), participants);
+    public String removeParticipant(Account p) {
+        newApp.getParticipants().remove(p);
         return "";
     }
     
+    public String addParticipants() {
+        System.out.println(newApp.getDescription());
+        loginSession.setCurrentApp(newApp);
+        return "addParticipants";
+    }
+    
+    public String save() {
+        Appointment a = aps.createAppointment(newApp, loginSession.getUser());
+        return "";
+    }
 }

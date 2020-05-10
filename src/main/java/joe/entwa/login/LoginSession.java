@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import joe.entwa.ent.Account;
+import joe.entwa.ent.Appointment;
 
 /**
  *
@@ -18,6 +19,7 @@ import joe.entwa.ent.Account;
 @SessionScoped
 public class LoginSession implements Serializable {
     private Account user;
+    private Appointment currentApp;
     
     /**
      * Creates a new instance of LoginSession
@@ -31,6 +33,14 @@ public class LoginSession implements Serializable {
 
     public void setUser(Account user) {
         this.user = user;
+    }
+
+    public Appointment getCurrentApp() {
+        return currentApp;
+    }
+
+    public void setCurrentApp(Appointment currentApp) {
+        this.currentApp = currentApp;
     }
     
     public String logOut() {
