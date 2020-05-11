@@ -17,7 +17,7 @@
             <b:navbarLinks pull="right">
                 <b:dropMenu value="#{loginSession.user.username}">
                     <b:navLink value="Edit details" href="editAccount.xhtml"></b:navLink>
-                    <b:navLink value="Log out" action="#{loginSession.logOut}"></b:navLink>
+                    <b:navLink value="Log out" action="#{loginSession.logOut()}"></b:navLink>
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>
@@ -26,7 +26,7 @@
             <h:outputText value="Create Appointment"/>
             <b:form inline="true">
                 <h:messages styleClass="errorMsg"></h:messages>
-                <h:panelGrid columns="2">
+                <b:panelGrid columns="2">
                     <h:panelGroup>
                         <h:panelGrid columns="1">
                             <b:inputText id="name" label="Description" value="#{appointmentCtrl.newApp.description}" required="true" labelStyle="width:90px;" styleClass="buttonRow"/>
@@ -47,14 +47,14 @@
                             </b:dateTimePicker>
                         </h:panelGrid>
                         <b:formGroup>
-                            <b:button value="Cancel" href="myAppointments.xhtml"/>
-                            <b:commandButton value="Save" action="save"/>
+                            <b:button value="Cancel" href="myAppointments"/>
+                            <b:commandButton value="Save" action="#{appointmentCtrl.saveAppointment()}"/>
                         </b:formGroup>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <b:row styleClass="buttonRow">
-                            <b:commandButton value="Add Participants" action="addParticipants"/>
+                            <b:commandButton value="Add Participants" action="#{appointmentCtrl.openAddParticipants()}"/>
                         </b:row>
                         <b:dataTable value="#{appointmentCtrl.newApp.participants}" var="p">
                             <b:dataTableColumn value="#{p.forename}"/>
@@ -67,7 +67,7 @@
                             </h:column>
                         </b:dataTable>
                     </h:panelGroup>
-                </h:panelGrid>
+                </b:panelGrid>
             </b:form>
             
         </b:panel>

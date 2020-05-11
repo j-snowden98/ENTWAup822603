@@ -52,13 +52,13 @@ public class AppointmentCtrl {
         return "";
     }
     
-    public String addParticipants() {
+    public String openAddParticipants() {
         System.out.println(newApp.getDescription());
         loginSession.setCurrentApp(newApp);
         return "addParticipants";
     }
     
-    public String save() {
+    public String saveAppointment() {
         Appointment a = aps.createAppointment(newApp, loginSession.getUser());
         return "";
     }
