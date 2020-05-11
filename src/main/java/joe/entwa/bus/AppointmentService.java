@@ -5,15 +5,11 @@
  */
 package joe.entwa.bus;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import joe.entwa.ctrl.AppointmentCtrl;
 import joe.entwa.ent.Account;
 import joe.entwa.ent.Appointment;
-import joe.entwa.login.LoginSession;
 import joe.entwa.pers.AccountFacade;
 import joe.entwa.pers.AppointmentFacade;
 
@@ -33,19 +29,21 @@ public class AppointmentService {
     @EJB
     private AppointmentFacade apmt;
     
-    private List<Account> potentialParticipants;
-    
-    public Appointment createAppointment(Appointment a, Account owner) {
+    public Boolean createAppointment(Appointment a, Account owner, Boolean addOwner) {
         a.setOwner(owner);
-        apmt.create(a);
-        
+        owner.getOwnedAppointments().add(a);
         a.getParticipants().forEach((p) -> {
             p.getAttendAppointments().add(a);
             acc.edit(p);
         });
-        apmt.edit(a);
         
-        return a;
+        if(addOwner) {
+            a.getParticipants().add(owner);
+            owner.getAttendAppointments().add(a);
+        }
+        apmt.create(a);
+        acc.edit(owner);
+        return true;
     }
     
     public List<Account> getPotentialParticipants(Account owner, List<Account> participants) {

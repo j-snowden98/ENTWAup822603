@@ -45,9 +45,11 @@
                             <b:dateTimePicker id="endTime"  format="HH:mm" label="End Time" value="#{appointmentCtrl.newApp.endTime}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
                                 <f:convertDateTime type="localTime" pattern="HH:mm"/>
                             </b:dateTimePicker>
+                            
+                            <b:selectBooleanCheckbox value="#{appointmentCtrl.ownerParticipating}" label="Owner is attending"/>
                         </h:panelGrid>
                         <b:formGroup>
-                            <b:button value="Cancel" href="myAppointments"/>
+                            <b:button value="Cancel" href="myAppointments.xhtml"/>
                             <b:commandButton value="Save" action="#{appointmentCtrl.saveAppointment()}"/>
                         </b:formGroup>
                     </h:panelGroup>

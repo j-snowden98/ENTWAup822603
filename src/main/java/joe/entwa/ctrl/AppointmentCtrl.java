@@ -22,6 +22,7 @@ import joe.entwa.login.LoginSession;
 @RequestScoped
 public class AppointmentCtrl {
     private Appointment newApp = new Appointment();
+    private Boolean ownerParticipating = true;
     
     @Inject
     private LoginSession loginSession;
@@ -46,6 +47,14 @@ public class AppointmentCtrl {
         this.newApp = newApp;
         this.loginSession.setCurrentApp(newApp);
     }
+
+    public Boolean getOwnerParticipating() {
+        return ownerParticipating;
+    }
+
+    public void setOwnerParticipating(Boolean ownerParticipating) {
+        this.ownerParticipating = ownerParticipating;
+    }
     
     public String removeParticipant(Account p) {
         newApp.getParticipants().remove(p);
@@ -59,7 +68,8 @@ public class AppointmentCtrl {
     }
     
     public String saveAppointment() {
-        Appointment a = aps.createAppointment(newApp, loginSession.getUser());
-        return "";
+        aps.createAppointment(newApp, loginSession.getUser(), ownerParticipating);
+        loginSession.setCurrentApp(null);
+        return "myAppointments";
     }
 }

@@ -44,6 +44,7 @@ public class LoginSession implements Serializable {
     }
     
     public String logOut() {
+        System.out.println(this.user.getForename());
         return "index";
     }
 }

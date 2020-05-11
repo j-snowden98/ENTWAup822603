@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,7 +49,7 @@ public class Account implements Serializable {
     @ManyToMany 
     private List<Account> contacts = new ArrayList<>();
     
-    @OneToMany(mappedBy="owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Appointment> ownedAppointments = new ArrayList<>();
     
     @ManyToMany(mappedBy="participants")
