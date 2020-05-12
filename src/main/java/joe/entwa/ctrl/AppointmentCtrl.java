@@ -31,7 +31,7 @@ public class AppointmentCtrl {
     private AppointmentService aps;
     
     /**
-     * Creates a new instance of CreateAppointment
+     * Creates a new instance of AppointmentCtrl
      */
     public AppointmentCtrl() {
     }
@@ -62,7 +62,6 @@ public class AppointmentCtrl {
     }
     
     public String openAddParticipants() {
-        System.out.println(newApp.getDescription());
         loginSession.setCurrentApp(newApp);
         return "addParticipants";
     }

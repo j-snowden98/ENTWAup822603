@@ -19,7 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
- *
+ * Entity class for representing Appointments in the online diary facility
  * @author Joe
  */
 @Entity
@@ -30,18 +30,54 @@ public class Appointment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    /**
+     * This field represents the description of an appointment.
+     */
     private String description;
+    
+    /**
+     * This field represents the start date of an appointment.
+     */
     private LocalDate startDate;
+    
+    /**
+     * This field represents the time at which the appointment starts.
+     */
     private LocalTime startTime;
+    
+    /**
+     * This field represents the date when the appointment ends. This allows complete flexibility to add events to a diary
+     * which last multiple days.
+     */
     private LocalDate endDate;
+    
+    /**
+     * This field represents time at which the appointment ends.
+     */
     private LocalTime endTime;
     
+    /**
+     * This field represents the account which created the appointment
+     */
     @ManyToOne
     private Account owner;
     
+    /**
+     * This field represents the collection of accounts which are attending this meeting.
+     * This is a many to many relationship, and is bi-directional, as it may be beneficial to access an account's appointments and an appointment's accounts
+     */
     @ManyToMany
     private List<Account> participants = new ArrayList<>();
-
+    
+    /**
+     * Constructor with parameters, allowing appointments to be created in the test data.
+     * @param description sets the description of the appointment
+     * @param startDate sets the start date of the appointment
+     * @param startTime sets the start time of the appointment
+     * @param endDate sets the end date of the appointment
+     * @param endTime sets the end time of the appointment
+     * @param owner sets the owner of the appointment
+     */
     public Appointment(String description, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, Account owner) {
         this.description = description;
         this.startDate = startDate;
@@ -51,6 +87,9 @@ public class Appointment implements Serializable {
         this.owner = owner;
     }
     
+    /**
+     * Empty constructor, to conform to specification of entity classes
+     */
     public Appointment() {
     }
 
