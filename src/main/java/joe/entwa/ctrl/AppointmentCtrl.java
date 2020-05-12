@@ -70,7 +70,6 @@ public class AppointmentCtrl {
     public String saveAppointment() {
         aps.createAppointment(newApp, loginSession.getUser(), ownerParticipating);
         loginSession.setCurrentApp(null);
-        //return "myAppointments";
-        return "";
+        return "myAppointments";
     }
 }
