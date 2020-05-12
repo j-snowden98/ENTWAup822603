@@ -34,6 +34,18 @@ public class AccountService {
             return null;
     }
     
+    public Account editAccount(Account a, String oldUsername) {
+        Boolean usernameUnique = af.checkUnique(a.getUsername());
+        System.out.println(a.getUsername());
+        System.out.println(oldUsername);
+        if(usernameUnique || (oldUsername == a.getUsername())) {
+            Account newAc = af.edit(a);
+            return newAc;
+        }
+        else
+            return null;
+    }
+    
     public Account loginAttempt(String username, String password) {
         Account a = af.authenticate(username, password);
         return a;
