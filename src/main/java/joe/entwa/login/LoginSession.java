@@ -24,7 +24,7 @@ public class LoginSession implements Serializable {
     /**
      * Creates a new instance of LoginSession
      */
-    LoginSession() {
+    public LoginSession() {
     }
 
     public Account getUser() {

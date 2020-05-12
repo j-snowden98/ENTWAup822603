@@ -49,7 +49,7 @@ public class Account implements Serializable {
     @ManyToMany 
     private List<Account> contacts = new ArrayList<>();
     
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner")
     private List<Appointment> ownedAppointments = new ArrayList<>();
     
     @ManyToMany(mappedBy="participants")

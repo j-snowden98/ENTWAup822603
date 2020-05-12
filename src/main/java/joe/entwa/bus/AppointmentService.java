@@ -32,17 +32,14 @@ public class AppointmentService {
     public Boolean createAppointment(Appointment a, Account owner, Boolean addOwner) {
         a.setOwner(owner);
         owner.getOwnedAppointments().add(a);
+        if(addOwner) 
+            a.getParticipants().add(owner);
+        apmt.create(a);
+        
         a.getParticipants().forEach((p) -> {
             p.getAttendAppointments().add(a);
             acc.edit(p);
         });
-        
-        if(addOwner) {
-            a.getParticipants().add(owner);
-            owner.getAttendAppointments().add(a);
-        }
-        apmt.create(a);
-        acc.edit(owner);
         return true;
     }
     
