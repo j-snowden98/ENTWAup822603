@@ -38,7 +38,7 @@ public class AccountService {
         Boolean usernameUnique = af.checkUnique(a.getUsername());
         System.out.println(a.getUsername());
         System.out.println(oldUsername);
-        if(usernameUnique || (oldUsername == a.getUsername())) {
+        if(usernameUnique || (oldUsername.equals(a.getUsername()))) {
             Account newAc = af.edit(a);
             return newAc;
         }

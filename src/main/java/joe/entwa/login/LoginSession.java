@@ -20,6 +20,7 @@ import joe.entwa.ent.Appointment;
 public class LoginSession implements Serializable {
     private Account user;
     private Appointment currentApp;
+    private String currentUsername;
     
     /**
      * Creates a new instance of LoginSession
@@ -33,6 +34,7 @@ public class LoginSession implements Serializable {
 
     public void setUser(Account user) {
         this.user = user;
+        this.currentUsername = user.getUsername();
     }
 
     public Appointment getCurrentApp() {
@@ -41,6 +43,10 @@ public class LoginSession implements Serializable {
 
     public void setCurrentApp(Appointment currentApp) {
         this.currentApp = currentApp;
+    }
+
+    public String getCurrentUsername() {
+        return currentUsername;
     }
     
     public String logOut() {

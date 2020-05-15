@@ -59,7 +59,7 @@ public class EditAccount {
     
     public String save() {
         if(comparePassword()) {
-            Account updatedAc = as.editAccount(currentUser, oldUsername);
+            Account updatedAc = as.editAccount(currentUser, loginSession.getCurrentUsername());
             if(updatedAc != null) {
                 loginSession.setUser(updatedAc);
                 return "myContacts";
