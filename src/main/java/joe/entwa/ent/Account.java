@@ -83,7 +83,7 @@ public class Account implements Serializable {
      * This field represents a collection of appointments which this account is attending; therefore, this account
      * is also in the list of participants in each of the appointments in this field
      */
-    @ManyToMany(mappedBy="participants")
+    @ManyToMany(mappedBy = "participants")
     private List<Appointment> attendAppointments = new ArrayList<>();
     
     

@@ -13,7 +13,7 @@ import javax.persistence.TypedQuery;
 import joe.entwa.ent.Account;
 
 /**
- *
+ * DAO for persistence operations on the Account entity
  * @author Joe
  */
 @Stateless

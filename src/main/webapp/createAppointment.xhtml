@@ -23,7 +23,9 @@
         </b:navBar>
         
         <b:panel collapsible="false">
-            <h:outputText value="Create Appointment"/>
+            <f:facet name="heading">
+                <h:outputText value="Create Appointment"/>
+            </f:facet>
             <b:form inline="true">
                 <h:messages styleClass="errorMsg"></h:messages>
                 <b:panelGrid columns="2">
@@ -71,7 +73,6 @@
                     </h:panelGroup>
                 </b:panelGrid>
             </b:form>
-            
         </b:panel>
     </h:body>
 </html>

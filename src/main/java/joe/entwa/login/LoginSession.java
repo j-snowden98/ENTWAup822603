@@ -33,8 +33,8 @@ public class LoginSession implements Serializable {
     }
 
     public void setUser(Account user) {
-        this.user = user;
         this.currentUsername = user.getUsername();
+        this.user = user;
     }
 
     public Appointment getCurrentApp() {

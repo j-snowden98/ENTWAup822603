@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import joe.entwa.ent.Appointment;
 
 /**
- *
+ * DAO for persistence operations on the Appointment entity
  * @author Joe
  */
 @Stateless
@@ -28,5 +28,4 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
     public AppointmentFacade() {
         super(Appointment.class);
     }
-    
 }

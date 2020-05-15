@@ -14,14 +14,11 @@ import joe.entwa.pers.AccountFacade;
 import joe.entwa.pers.AppointmentFacade;
 
 /**
- *
+ * This class contains the business logic methods required for managing appointments.
  * @author Joe
  */
 @Stateless
 public class AppointmentService {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     
     @EJB
     private AccountFacade acc;
