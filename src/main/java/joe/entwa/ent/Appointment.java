@@ -140,8 +140,6 @@ public class Appointment implements Serializable {
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
-
-    
     
     public Account getOwner() {
         return owner;

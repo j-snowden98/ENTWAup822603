@@ -81,6 +81,7 @@ public class RegisterUser {
     public String register() {
         if(comparePassword()) {
             Account createdAc = as.createAccount(newUser);
+            //createAccount returns null if the username is not unique
             if(createdAc != null) {
                 loginSession.setUser(createdAc);
                 return "myContacts";

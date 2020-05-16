@@ -37,12 +37,16 @@ public class AppointmentsList {
      * @return a list of appointments which the current user owns and/or is attending.
      */
     public List<Appointment> getAppointments() {
+        //Creates sets for owned and attending appointments, to ensure there are no duplicates
         Set<Appointment> setOwn = new HashSet<>();
         Set<Appointment> setAtt = new HashSet<>();
-        
         setOwn.addAll(loginSession.getUser().getOwnedAppointments());
         setAtt.addAll(loginSession.getUser().getAttendAppointments());
+        
+        //Combines the two sets to get the union, without any elements repeated.
         setOwn.addAll(setAtt);
+        
+        //Returns the union of the two sets as the expected list type.
         appointments.addAll(setOwn);
         return appointments;
     }

@@ -31,12 +31,23 @@ public class AccountFacade extends AbstractFacade<Account> {
         super(Account.class);
     }
     
+    /**
+     * Method to check that an entered username is unique.
+     * @param newUsername is the entered username.
+     * @return true or false for whether the username is unique.
+     */
     public Boolean checkUnique(String newUsername) {
         TypedQuery<Account> findUser = em.createQuery("SELECT a FROM Account a WHERE a.username = :username", Account.class);
         List<Account> results = findUser.setParameter("username", newUsername).getResultList();
         return results.isEmpty();
     }
-
+    
+    /**
+     * Method to log a user in. Checks that the credentials are valid.
+     * @param username the entered username.
+     * @param password the entered password.
+     * @return an Account entity if the username matches an account and the password is correct, otherwise returns null.
+     */
     public Account authenticate(String username, String password) {
         TypedQuery<Account> findUser = em.createQuery("SELECT a FROM Account a WHERE a.username = :username", Account.class);
         List<Account> results = findUser.setParameter("username", username).getResultList();
