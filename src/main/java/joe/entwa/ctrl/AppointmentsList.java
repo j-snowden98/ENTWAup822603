@@ -16,7 +16,7 @@ import joe.entwa.ent.Appointment;
 import joe.entwa.login.LoginSession;
 
 /**
- *
+ * Controller for the appointments list view
  * @author Joe
  */
 @Named(value = "appointmentsList")
@@ -31,7 +31,11 @@ public class AppointmentsList {
      */
     public AppointmentsList() {
     }
-
+    
+    /**
+     * Method to retrieve the current user's appointments. Combines the lists of the user's owned and attending appointments and removes the duplicates.
+     * @return a list of appointments which the current user owns and/or is attending.
+     */
     public List<Appointment> getAppointments() {
         Set<Appointment> setOwn = new HashSet<>();
         Set<Appointment> setAtt = new HashSet<>();

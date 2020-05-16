@@ -7,35 +7,31 @@ package joe.entwa.ctrl;
 
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import joe.entwa.bus.TestDataService;
 
 /**
- *
+ * Controller for the start view
  * @author Joe
  */
 @Named(value = "startCtrl")
-@Dependent
+@RequestScoped
 public class StartCtrl {
-
-    /**
-     * Creates a new instance of StartCtrl
-     */
-    private String testDataAdded = "Test data added: ";
-    
     @EJB
     private TestDataService ds;
     
+    /**
+     * Creates a new instance of StartCtrl
+     */
     public StartCtrl() {
     }
     
-    public String getTestDataAdded() {
-        return testDataAdded;
-    }
-    
+    /**
+     * Method invoked by clicking the test data button in the start view. Populates the database with test data.
+     * @return empty string to reload the start page.
+     */
     public String insertTestData() {
         ds.insertTestData();
-        testDataAdded += "True";
         return "";
     }
     

@@ -15,7 +15,7 @@ import joe.entwa.ent.Account;
 import joe.entwa.login.LoginSession;
 
 /**
- *
+ * Controller for the add participants view.
  * @author Joe
  */
 @Named(value = "participantCtrl")
@@ -34,7 +34,11 @@ public class ParticipantCtrl {
      */
     public ParticipantCtrl() {
     }
-
+    
+    /**
+     * Method to retrieve a list of accounts which are not the user and not already participating in the current appointment.
+     * @return a list of account entities.
+     */
     public List<Account> getAccounts() {
         if(user.getCurrentApp() != null) {
             accounts = as.getPotentialParticipants(user.getUser(), user.getCurrentApp().getParticipants());
@@ -44,7 +48,11 @@ public class ParticipantCtrl {
         }
         return accounts;
     }
-    
+     /**
+      * Method invoked when clicking the add button on an account in the add participants view.
+      * @param a is the selected account entity
+      * @return an empty string to reload the page and update the list of available accounts.
+      */
     public String addToParticipants(Account a) {
         if(user.getCurrentApp() != null) {
             user.getCurrentApp().getParticipants().add(a);

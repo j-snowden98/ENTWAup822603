@@ -15,7 +15,7 @@ import joe.entwa.ent.Account;
 import joe.entwa.login.LoginSession;
 
 /**
- *
+ * Controller for the add contact view.
  * @author Joe
  */
 @Named(value = "addContact")
@@ -35,12 +35,21 @@ public class AddContact {
     public AddContact() {
         
     }
-
+    
+    /**
+     * Gets a list of account entities in the system, which are not the user and not already in the user's contacts list.
+     * @return a list of account entities which can be added to the user's contacts list
+     */
     public List<Account> getAccounts() {
         accounts = cs.getOtherAccounts(loginSession.getUser());
         return accounts;
     }
     
+    /**
+     * Adds the selected account entity to the user account's list of contacts.
+     * @param a is the selected account entity
+     * @return empty string, to reload the page and therefore update the list of accounts.
+     */
     public String addToContacts(Account a) {
         Account updatedUser = cs.addContact(loginSession.getUser(), a);
         loginSession.setUser(updatedUser);

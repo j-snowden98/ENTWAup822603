@@ -21,41 +21,63 @@ import net.bootsfaces.utils.FacesMessages;
 @Named(value = "registerUser")
 @RequestScoped
 public class RegisterUser {
-    /**
-     * Creates a new instance of RegisterUser
-     */
     
     private String verifyPassword;
     private Account newUser = new Account();
     @EJB
     private AccountService as;
-    
     @Inject
     LoginSession loginSession;
     
+    /**
+     * Creates a new instance of RegisterUser
+     */
     public RegisterUser() {
     }
-
+    
+    /**
+     * @return the value of the verify password field in the register view. 
+     */
     public String getVerifyPassword() {
         return verifyPassword;
     }
-
+    
+    /**
+     * Sets the value of the verify password field
+     * @param verifyPassword a string containing the value of the verify password field in the register view.
+     */
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
     }
-
+    
+    /**
+     * Retrieve the created account entity
+     * @return an account entity.
+     */
     public Account getNewUser() {
         return newUser;
     }
-
+    
+    /**
+     * Update the created account entity
+     * @param newUser the modified account entity
+     */
     public void setNewUser(Account newUser) {
         this.newUser = newUser;
     }
     
+    /**
+     * Method to test whether the password and verify password fields are matching.
+     * @return true if the password fields are matching, false if not.
+     */
     public Boolean comparePassword() {
         return (newUser.getPassword() == null ? verifyPassword == null : newUser.getPassword().equals(verifyPassword));
     }
     
+    /**
+     * Method invoked by clicking the save button in the register view. This attempts to save the details of the new user.
+     * @return a string to redirect to the contacts list view if the account has been successfully saved. Otherwise returns an empty string to reload the page, along with an appropriate error message.
+     */
     public String register() {
         if(comparePassword()) {
             Account createdAc = as.createAccount(newUser);

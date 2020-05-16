@@ -13,7 +13,7 @@ import joe.entwa.ent.Account;
 import joe.entwa.login.LoginSession;
 
 /**
- *
+ * Controller for the contacts list view.
  * @author Joe
  */
 @Named(value = "contactsList")
@@ -28,7 +28,11 @@ public class ContactsList {
      */
     public ContactsList() {
     }
-
+    
+    /**
+     * Display the user's contacts
+     * @return a list of account entities which the user has added to their contacts list.
+     */
     public List<Account> getContacts() {
         return loginSession.getUser().getContacts();
     }

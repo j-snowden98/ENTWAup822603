@@ -12,9 +12,10 @@ import javax.inject.Inject;
 import joe.entwa.bus.AccountService;
 import joe.entwa.ent.Account;
 import joe.entwa.login.LoginSession;
+import net.bootsfaces.utils.FacesMessages;
 
 /**
- *
+ * Controller for the login view
  * @author Joe
  */
 @Named(value = "loginCtrl")
@@ -33,25 +34,46 @@ public class LoginCtrl {
     @Inject
     private LoginSession loginSession;
     
+    /**
+     * Creates an instance of LoginCtrl
+     */
     public LoginCtrl() {
     }
-
+    
+    /**
+     * @return the username entered in the field in the login form. 
+     */
     public String getUsername() {
         return username;
     }
-
+    
+    /**
+     * Method to set the username based on the string entered in the login view.
+     * @param username is the username entered in the login view.
+     */
     public void setUsername(String username) {
         this.username = username;
     }
-
+    
+    /**
+     * @return a string containing the password entered by a user in the login view.
+     */
     public String getPassword() {
         return password;
     }
-
+    
+    /**
+     * Method to set the password based on the string entered in the login view
+     * @param password is the password entered in the login view 
+     */
     public void setPassword(String password) {
         this.password = password;
     }
     
+    /**
+     * Method invoked when the login button is clicked. Attempts to log the user in by invoking the business logic method. Sets the user entity of the session scoped bean upon successful login.
+     * @return a string to redirect to the contacts list view upon successful login, otherwise reloads the page and notifies the user that their entered credentials are invalid
+     */
     public String attemptLogin() {
         Account currentUser = as.loginAttempt(username, password);
         if(currentUser != null) {
@@ -59,8 +81,8 @@ public class LoginCtrl {
             return "myContacts";
         }
         else {
+            FacesMessages.error("@property(loginCtrl.password)", "The username and/or passoword combination is incorrect.", "");
             return "";
         }
-        
     }
 }
