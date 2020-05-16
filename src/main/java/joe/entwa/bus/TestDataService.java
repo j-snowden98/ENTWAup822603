@@ -15,14 +15,11 @@ import joe.entwa.pers.AccountFacade;
 import joe.entwa.pers.AppointmentFacade;
 
 /**
- *
+ * Business logic for adding the test data to demonstrate the functionality of this web application
  * @author Joe
  */
 @Stateless
 public class TestDataService {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     
     @EJB
     AccountFacade acc;
@@ -30,6 +27,9 @@ public class TestDataService {
     @EJB
     AppointmentFacade app;
     
+    /**
+     * Method to populate the persistence store with test data.
+     */
     public void insertTestData() {
         Account user1 = new Account("Becky", "Draper", "user1", "password1", "1 London Road", "North end", "Portsmouth", "Hampshire", "PO2 8PJ", "+44(71)23456789", "user1@google.com");
         acc.create(user1);

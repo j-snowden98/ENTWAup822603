@@ -26,6 +26,13 @@ public class AppointmentService {
     @EJB
     private AppointmentFacade apmt;
     
+    /**
+     * Method to persist a newly created appointment entity.
+     * @param a the appointment entity to be persisted
+     * @param owner the account entity who created the appointment
+     * @param addOwner whether the owner of the appointment will be attending.
+     * @return 
+     */
     public Boolean createAppointment(Appointment a, Account owner, Boolean addOwner) {
         a.setOwner(owner);
         owner.getOwnedAppointments().add(a);
@@ -40,6 +47,12 @@ public class AppointmentService {
         return true;
     }
     
+    /**
+     * Method to retrieve a list of account entities, which are not the owner and are not already in the list of participants for the currently edited appointment
+     * @param owner account entity which is creating the appointment.
+     * @param participants the current list of participants in the appointment.
+     * @return a list of account entities from the system which are not already in the list of participants and are not the owner.
+     */
     public List<Account> getPotentialParticipants(Account owner, List<Account> participants) {
         List<Account> accounts = acc.findAll();
         accounts.remove(owner);
@@ -49,7 +62,11 @@ public class AppointmentService {
         return accounts;
     }
     
-    public void deleteAppointment(Appointment a) {
+    /**
+     * Method to cancel an appointment.
+     * @param a the appointment entity to be cancelled.
+     */
+    public void cancelAppointment(Appointment a) {
         apmt.remove(a);
     }
 }
