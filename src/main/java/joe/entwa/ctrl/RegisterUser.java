@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import joe.entwa.bus.AccountService;
 import joe.entwa.ent.Account;
 import joe.entwa.login.LoginSession;
+import net.bootsfaces.utils.FacesMessages;
 
 /**
  *
@@ -63,11 +64,12 @@ public class RegisterUser {
                 return "myContacts";
             }
             else {
-                //error msg for duplicate username
+                FacesMessages.error("@property(registerUser.newUser.username)", "This username is already taken. Please choose another one", "");
                 return "";
             }
         }
         else {
+            FacesMessages.error("@property(registerUser.verifyPassword)", "The passwords do not match.", "");
             return "";
         }
     }
