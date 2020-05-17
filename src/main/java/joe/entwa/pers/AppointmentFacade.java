@@ -28,4 +28,12 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
     public AppointmentFacade() {
         super(Appointment.class);
     }
+    
+    public String checkTimeClash(Appointment a, Boolean addOwner) {
+        if(addOwner) {
+            //check owner
+        }
+        
+        return null;
+    }
 }

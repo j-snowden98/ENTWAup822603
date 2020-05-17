@@ -28,13 +28,13 @@
             <b:dataTable value="#{appointmentsList.appointments}" var="a">
                 <b:dataTableColumn value="#{a.description}"/>
 
-                <b:dataTableColumn value="#{a.startDate}" label="Start Date"/>
+                <b:dataTableColumn value="#{a.appStart.toLocalDate().format(appointmentsList.ukDate)}" label="Start Date"/>
 
-                <b:dataTableColumn value="#{a.startTime}" label="Start Time"/>
+                <b:dataTableColumn value="#{a.appStart.toLocalTime()}" label="Start Time"/>
 
-                <b:dataTableColumn value="#{a.endDate}" label="End Date"/>
+                <b:dataTableColumn value="#{a.appEnd.toLocalDate().format(appointmentsList.ukDate)}" label="End Date"/>
 
-                <b:dataTableColumn value="#{a.endTime}" label="End Time"/>
+                <b:dataTableColumn value="#{a.appEnd.toLocalTime()}" label="End Time"/>
 
                 <b:dataTableColumn value="#{a.owner.username}" label="Owner"/>
             </b:dataTable>

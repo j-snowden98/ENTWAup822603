@@ -17,12 +17,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 /**
  * Entity class for representing Appointments in the online diary facility
  * @author Joe
  */
 @Entity
+@NamedQuery(name = "Appointment.timeClash", query = "SELECT a FROM Appointment a JOIN Account u WHERE u.username = ?1 AND (a.appStart BETWEEN ?2 AND ?3) OR (a.appEnd BETWEEN ?2 AND ?3)")
 public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,25 +38,15 @@ public class Appointment implements Serializable {
     private String description;
     
     /**
-     * This field represents the start date of an appointment.
+     * This field represents the start date and time of an appointment.
      */
-    private LocalDate startDate;
+    private LocalDateTime appStart;
+    
     
     /**
-     * This field represents the time at which the appointment starts.
+     * This field represents the date and time when the appointment ends. This allows complete flexibility to add events to a diary which last multiple days.
      */
-    private LocalTime startTime;
-    
-    /**
-     * This field represents the date when the appointment ends. This allows complete flexibility to add events to a diary
-     * which last multiple days.
-     */
-    private LocalDate endDate;
-    
-    /**
-     * This field represents time at which the appointment ends.
-     */
-    private LocalTime endTime;
+    private LocalDateTime appEnd;
     
     /**
      * This field represents the account which created the appointment
@@ -72,23 +64,19 @@ public class Appointment implements Serializable {
     /**
      * Constructor with parameters, allowing appointments to be created in the test data.
      * @param description sets the description of the appointment
-     * @param startDate sets the start date of the appointment
-     * @param startTime sets the start time of the appointment
-     * @param endDate sets the end date of the appointment
-     * @param endTime sets the end time of the appointment
+     * @param appStart sets the start date and time of the appointment
+     * @param appEnd sets the end date and time of the appointment
      * @param owner sets the owner of the appointment
      */
-    public Appointment(String description, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, Account owner) {
+    public Appointment(String description, LocalDateTime appStart, LocalDateTime appEnd, Account owner) {
         this.description = description;
-        this.startDate = startDate;
-        this.startTime = startTime;
-        this.endDate = endDate;
-        this.endTime = endTime;
+        this.appStart = appStart;
+        this.appEnd = appEnd;
         this.owner = owner;
     }
-    
+
     /**
-     * Empty constructor, to conform to specification of entity classes
+     * Creates an instance of appointment.
      */
     public Appointment() {
     }
@@ -109,36 +97,20 @@ public class Appointment implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDateTime getAppStart() {
+        return appStart;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setAppStart(LocalDateTime appStart) {
+        this.appStart = appStart;
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
+    public LocalDateTime getAppEnd() {
+        return appEnd;
     }
 
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
+    public void setAppEnd(LocalDateTime appEnd) {
+        this.appEnd = appEnd;
     }
     
     public Account getOwner() {

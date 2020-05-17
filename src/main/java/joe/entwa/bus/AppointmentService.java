@@ -33,18 +33,24 @@ public class AppointmentService {
      * @param addOwner whether the owner of the appointment will be attending.
      * @return 
      */
-    public Boolean createAppointment(Appointment a, Account owner, Boolean addOwner) {
+    public String createAppointment(Appointment a, Account owner, Boolean addOwner) {
         a.setOwner(owner);
-        owner.getOwnedAppointments().add(a);
-        if(addOwner) 
-            a.getParticipants().add(owner);
-        apmt.create(a);
-        
-        a.getParticipants().forEach((p) -> {
-            p.getAttendAppointments().add(a);
-            acc.edit(p);
-        });
-        return true;
+        String err = apmt.checkTimeClash(a, addOwner);
+        if(err == null) {    
+            owner.getOwnedAppointments().add(a);
+            if(addOwner) 
+                a.getParticipants().add(owner);
+            apmt.create(a);
+
+            a.getParticipants().forEach((p) -> {
+                p.getAttendAppointments().add(a);
+                acc.edit(p);
+            });
+            return "";
+        }
+        else {
+            return err;
+        }
     }
     
     /**

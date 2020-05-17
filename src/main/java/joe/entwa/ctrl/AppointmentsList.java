@@ -5,6 +5,7 @@
  */
 package joe.entwa.ctrl;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,8 @@ public class AppointmentsList {
     @Inject
     private LoginSession loginSession;
     private List<Appointment> appointments = new ArrayList<>();
+    private DateTimeFormatter ukDate = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+    
     /**
      * Creates a new instance of AppointmentsList
      */
@@ -49,5 +52,9 @@ public class AppointmentsList {
         //Returns the union of the two sets as the expected list type.
         appointments.addAll(setOwn);
         return appointments;
+    }
+
+    public DateTimeFormatter getUkDate() {
+        return ukDate;
     }
 }

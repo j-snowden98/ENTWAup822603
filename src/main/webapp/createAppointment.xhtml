@@ -32,20 +32,13 @@
                     <h:panelGroup>
                         <h:panelGrid columns="1">
                             <b:inputText id="name" label="Description" value="#{appointmentCtrl.newApp.description}" required="true" labelStyle="width:90px;" styleClass="buttonRow"/>
-                            <b:dateTimePicker id="startDate"  format="DD/MM/YYYY" label="Start Date" value="#{appointmentCtrl.newApp.startDate}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
-                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
-                            </b:dateTimePicker>
-                                
-                            <b:dateTimePicker id="startTime"  format="HH:mm" label="Start Time" value="#{appointmentCtrl.newApp.startTime}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
-                                <f:convertDateTime type="localTime" pattern="HH:mm"/>
+                            <b:dateTimePicker id="startDate"  format="DD/MM/YYYY HH:mm" label="Start" value="#{appointmentCtrl.newApp.appStart}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
+                                <f:convertDateTime type="localDateTime" pattern="dd/MM/uuuu HH:mm"/>
                             </b:dateTimePicker>
                             
-                            <b:dateTimePicker id="endDate"  format="DD/MM/YYYY" label="End Date" value="#{appointmentCtrl.newApp.endDate}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
-                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
-                            </b:dateTimePicker>
-                                
-                            <b:dateTimePicker id="endTime"  format="HH:mm" label="End Time" value="#{appointmentCtrl.newApp.endTime}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
-                                <f:convertDateTime type="localTime" pattern="HH:mm"/>
+                            
+                            <b:dateTimePicker id="endDate" format="DD/MM/YYYY HH:mm" label="End" value="#{appointmentCtrl.newApp.appEnd}" required="true" labelStyle="width:90px;" styleClass="buttonRow">
+                                <f:convertDateTime type="localDateTime" pattern="dd/MM/uuuu HH:mm"/>
                             </b:dateTimePicker>
                             
                             <b:selectBooleanCheckbox value="#{appointmentCtrl.ownerParticipating}" label="Owner is attending"/>

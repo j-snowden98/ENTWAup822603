@@ -81,7 +81,7 @@ public class LoginCtrl {
             return "myContacts";
         }
         else {
-            FacesMessages.error("@property(loginCtrl.password)", "The username and/or passoword combination is incorrect.", "");
+            FacesMessages.error("@property(loginCtrl.password)", "The username and/or password combination is incorrect.", "");
             return "";
         }
     }

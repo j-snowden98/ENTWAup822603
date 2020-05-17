@@ -23,10 +23,8 @@ import joe.entwa.login.LoginSession;
 public class AppointmentCtrl {
     private Appointment newApp = new Appointment();
     private Boolean ownerParticipating = true;
-    
     @Inject
     private LoginSession loginSession;
-    
     @EJB
     private AppointmentService aps;
     
@@ -38,6 +36,7 @@ public class AppointmentCtrl {
     
     /**
      * Returns the currently created appointment.
+     * Start and end are split into LocalDates and LocalTimes.
      * @return either a new appointment entity or the currently edited appointment entity in the session scoped bean if there is one.
      */
     public Appointment getNewApp() {
@@ -49,6 +48,7 @@ public class AppointmentCtrl {
     
     /**
      * Updates the edited appointment entity with the fields entered from the form in the create appointment view.
+     * LocalDate and LocalTimes are combined into LocalDateTimes to modify those in the appointment entity
      * @param newApp the updated account entity.
      */
     public void setNewApp(Appointment newApp) {

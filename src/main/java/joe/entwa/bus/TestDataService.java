@@ -6,6 +6,7 @@
 package joe.entwa.bus;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -70,7 +71,7 @@ public class TestDataService {
         user1.getContacts().add(user10);
         user10.getContacts().add(user1);
         
-        Appointment appoint1 = new Appointment("Meeting 1", LocalDate.parse("2020-01-08"), LocalTime.parse("09:00"), LocalDate.parse("2020-01-08"), LocalTime.parse("11:00"), user1);
+        Appointment appoint1 = new Appointment("Meeting 1", LocalDateTime.parse("2020-01-08T09:00"), LocalDateTime.parse("2020-01-08T11:00"), user1);
         app.create(appoint1);
         appoint1.getParticipants().add(user1);
         appoint1.getParticipants().add(user2);
