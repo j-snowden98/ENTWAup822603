@@ -27,16 +27,16 @@ public class AppointmentService {
     private AppointmentFacade apmt;
     
     /**
-     * Method to persist a newly created appointment entity.
+     * Method to persist a newly created appointment entity. First checks for any time clashes for any participating accounts.
      * @param a the appointment entity to be persisted
      * @param owner the account entity who created the appointment
      * @param addOwner whether the owner of the appointment will be attending.
-     * @return 
+     * @return null if the appointment is created successfully, otherwise return a string containing a message to notify the owner of a time clash; which participant and the times of their appointment, allowing the owner to adjust the timings or the list of participants.
      */
     public String createAppointment(Appointment a, Account owner, Boolean addOwner) {
         a.setOwner(owner);
-        String err = apmt.checkTimeClash(a, addOwner);
-        if(err == null) {    
+        String timeClashMsg = apmt.checkTimeClash(a, addOwner);
+        if(timeClashMsg == null) {    
             owner.getOwnedAppointments().add(a);
             if(addOwner) 
                 a.getParticipants().add(owner);
@@ -46,10 +46,10 @@ public class AppointmentService {
                 p.getAttendAppointments().add(a);
                 acc.edit(p);
             });
-            return "";
+            return null;
         }
         else {
-            return err;
+            return timeClashMsg;
         }
     }
     

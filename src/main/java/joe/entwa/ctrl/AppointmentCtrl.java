@@ -13,6 +13,7 @@ import joe.entwa.bus.AppointmentService;
 import joe.entwa.ent.Account;
 import joe.entwa.ent.Appointment;
 import joe.entwa.login.LoginSession;
+import net.bootsfaces.utils.FacesMessages;
 
 /**
  * Controller for the create appointment view.
@@ -95,8 +96,14 @@ public class AppointmentCtrl {
      * @return either a string to redirect to the list of appointments facelet if the appointment has saved successfully, otherwise return an empty string to reload the page and display an appropriate error message.
      */
     public String saveAppointment() {
-        aps.createAppointment(newApp, loginSession.getUser(), ownerParticipating);
-        loginSession.setCurrentApp(null);
-        return "myAppointments";
+        String timeClashMsg = aps.createAppointment(newApp, loginSession.getUser(), ownerParticipating);
+        if(timeClashMsg == null) {
+            loginSession.setCurrentApp(null);
+            return "myAppointments";
+        }
+        else {
+            FacesMessages.error("@property(appointmentCtrl.newApp.appStart)", timeClashMsg, "");
+            return "";
+        }
     }
 }

@@ -6,9 +6,7 @@
 package joe.entwa.ent;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -24,7 +22,7 @@ import javax.persistence.NamedQuery;
  * @author Joe
  */
 @Entity
-@NamedQuery(name = "Appointment.timeClash", query = "SELECT a FROM Appointment a JOIN Account u WHERE u.username = ?1 AND (a.appStart BETWEEN ?2 AND ?3) OR (a.appEnd BETWEEN ?2 AND ?3)")
+@NamedQuery(name = "Appointment.timeClash", query = "SELECT a FROM Appointment a INNER JOIN a.participants u WHERE (u.username = ?1) AND (a.appStart BETWEEN ?2 AND ?3 OR a.appEnd BETWEEN ?2 AND ?3)")
 public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
