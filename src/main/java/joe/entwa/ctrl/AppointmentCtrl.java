@@ -92,17 +92,31 @@ public class AppointmentCtrl {
     }
     
     /**
+     * Method to check whether the end date/time comes after the start date/time
+     * @return true if the end date/time comes after the start date/time. Otherwise, return false
+     */
+    public Boolean validStartEnd() {
+        return this.newApp.getAppEnd().isAfter(this.newApp.getAppStart());
+    }
+    
+    /**
      * Attempt to save the appointment after clicking the save button on the create appointment view.
      * @return either a string to redirect to the list of appointments facelet if the appointment has saved successfully, otherwise return an empty string to reload the page and display an appropriate error message.
      */
     public String saveAppointment() {
-        String timeClashMsg = aps.createAppointment(newApp, loginSession.getUser(), ownerParticipating);
-        if(timeClashMsg == null) {
-            loginSession.setCurrentApp(null);
-            return "myAppointments";
+        if(this.validStartEnd()) {
+            String timeClashMsg = aps.createAppointment(newApp, loginSession.getUser(), ownerParticipating);
+            if(timeClashMsg == null) {
+                loginSession.setCurrentApp(null);
+                return "myAppointments";
+            }
+            else {
+                FacesMessages.error("@property(appointmentCtrl.newApp.appStart)", timeClashMsg, "");
+                return "";
+            }
         }
         else {
-            FacesMessages.error("@property(appointmentCtrl.newApp.appStart)", timeClashMsg, "");
+            FacesMessages.error("@property(appointmentCtrl.newApp.appEnd)", "End time must be after the start time", "");
             return "";
         }
     }
