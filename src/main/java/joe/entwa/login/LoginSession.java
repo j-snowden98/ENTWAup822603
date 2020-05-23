@@ -8,6 +8,8 @@ package joe.entwa.login;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import joe.entwa.ent.Account;
 import joe.entwa.ent.Appointment;
 
@@ -50,7 +52,9 @@ public class LoginSession implements Serializable {
     }
     
     public String logOut() {
-        System.out.println(this.user.getForename());
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.invalidate();
         return "index";
     }
 }
