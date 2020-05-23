@@ -31,6 +31,7 @@ public class AppointmentsList {
     @Inject
     private LoginSession loginSession;
     private List<Appointment> appointments = new ArrayList<>();
+    private List<Appointment> allAppointments = new ArrayList<>();
     private DateTimeFormatter ukDate = DateTimeFormatter.ofPattern("dd/MM/uuuu");
     @EJB
     private AppointmentService as;
@@ -61,7 +62,17 @@ public class AppointmentsList {
         
         return appointments;
     }
-
+    
+    /**
+     * Method to retrieve all appointments in the system
+     * @return a list of all appointment entities to be displayed in the table
+     */
+    public List<Appointment> getAllAppointments() {
+        allAppointments.clear();
+        allAppointments.addAll(as.getAllAppointments());
+        return allAppointments;
+    }
+    
     public DateTimeFormatter getUkDate() {
         return ukDate;
     }

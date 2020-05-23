@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
-        <title>My Appointments</title>
+        <title>All Appointments</title>
     </h:head>
     <h:body>
         <h:outputStylesheet library="css" name="styles.css"/>
@@ -25,9 +25,9 @@
             <h:messages styleClass="errorMsg"></h:messages>
             <b:row styleClass="buttonRow">
                 <b:button value="Add Appointment" href="createAppointment.xhtml"/>
-                <b:button value="All Appointments" href="allAppointments.xhtml"/>
+                <b:button value="My Appointments" href="myAppointments.xhtml"/>
             </b:row>
-            <b:dataTable value="#{appointmentsList.appointments}" var="a">
+            <b:dataTable value="#{appointmentsList.allAppointments}" var="a">
                 <b:dataTableColumn value="#{a.description}"/>
 
                 <b:dataTableColumn value="#{a.appStart.toLocalDate().format(appointmentsList.ukDate)}" label="Start Date"/>

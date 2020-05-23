@@ -54,6 +54,14 @@ public class AppointmentService {
     }
     
     /**
+     * Method to retrieve a list of all appointments on the system
+     * @return a list of appointment entities
+     */
+    public List<Appointment> getAllAppointments() {
+        return apmt.findAll();
+    }
+    
+    /**
      * Method to retrieve a list of account entities, which are not the owner and are not already in the list of participants for the currently edited appointment
      * @param owner account entity which is creating the appointment.
      * @param participants the current list of participants in the appointment.
