@@ -16,8 +16,10 @@
             </b:navbarLinks>
             <b:navbarLinks pull="right">
                 <b:dropMenu value="#{loginSession.user.username}">
-                    <b:navLink value="Edit details" href="editAccount.xhtml"></b:navLink>
-                    <b:navLink value="Log out" action="#{loginSession.logOut}"></b:navLink>
+                    <h:form>
+                        <b:navLink value="Edit details" href="editAccount.xhtml"/>
+                        <b:navCommandLink value="Log out" action="#{loginSession.logOut()}"/>
+                    </h:form>
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>
