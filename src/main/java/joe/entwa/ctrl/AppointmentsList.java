@@ -18,6 +18,7 @@ import joe.entwa.bus.AppointmentService;
 import joe.entwa.ent.Account;
 import joe.entwa.ent.Appointment;
 import joe.entwa.login.LoginSession;
+import net.bootsfaces.utils.FacesMessages;
 
 /**
  * Controller for the appointments list view
@@ -78,7 +79,7 @@ public class AppointmentsList {
             return "";
         }
         else {
-            //Only the owner may cancel an appointment
+            FacesMessages.error("", "Only the owner can cancel an appointment.", "");
             return "";
         }
     }
