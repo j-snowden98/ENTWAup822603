@@ -5,9 +5,7 @@
  */
 package joe.entwa.bus;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import joe.entwa.ent.Account;
@@ -87,6 +85,36 @@ public class TestDataService {
         acc.edit(user1);
         acc.edit(user2);
         acc.edit(user3);
+        acc.edit(user10);
+        
+        Appointment appoint2 = new Appointment("Meeting 2", LocalDateTime.parse("2020-01-08T13:00"), LocalDateTime.parse("2020-01-08T14:30"), user7);
+        app.create(appoint1);
+        appoint2.getParticipants().add(user1);
+        appoint2.getParticipants().add(user2);
+        appoint2.getParticipants().add(user3);
+        appoint2.getParticipants().add(user4);
+        appoint2.getParticipants().add(user5);
+        appoint2.getParticipants().add(user6);
+        appoint2.getParticipants().add(user7);
+        appoint2.getParticipants().add(user10);
+        
+        user1.getAttendAppointments().add(appoint2);
+        user2.getAttendAppointments().add(appoint2);
+        user3.getAttendAppointments().add(appoint2);
+        user4.getAttendAppointments().add(appoint2);
+        user5.getAttendAppointments().add(appoint2);
+        user6.getAttendAppointments().add(appoint2);
+        user7.getAttendAppointments().add(appoint2);
+        user10.getAttendAppointments().add(appoint2);
+        
+        app.edit(appoint1);
+        acc.edit(user1);
+        acc.edit(user2);
+        acc.edit(user3);
+        acc.edit(user4);
+        acc.edit(user5);
+        acc.edit(user6);
+        acc.edit(user7);
         acc.edit(user10);
     }
 }
