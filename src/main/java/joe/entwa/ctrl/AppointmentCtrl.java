@@ -66,7 +66,7 @@ public class AppointmentCtrl {
     
     /**
      * Sets whether the owner is attending the appointment based on the checkbox in the create appointment view.
-     * @param ownerParticipating 
+     * @param ownerParticipating value to update this field
      */
     public void setOwnerParticipating(Boolean ownerParticipating) {
         this.ownerParticipating = ownerParticipating;
