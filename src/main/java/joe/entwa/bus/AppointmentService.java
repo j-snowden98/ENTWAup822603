@@ -71,8 +71,18 @@ public class AppointmentService {
     /**
      * Method to cancel an appointment.
      * @param a the appointment entity to be cancelled.
+     * @param owner is the account currently logged in who is cancelling the appointment
+     * @return the updated user entity
      */
-    public void cancelAppointment(Appointment a) {
+    public Account cancelAppointment(Appointment a, Account owner) {
         apmt.remove(a);
+        owner.getOwnedAppointments().remove(a);
+        owner.getAttendAppointments().remove(a);
+        owner = acc.edit(owner);
+        a.getParticipants().forEach((p) -> {
+            p.getAttendAppointments().remove(a);
+            acc.edit(p);
+        });
+        return owner;
     }
 }

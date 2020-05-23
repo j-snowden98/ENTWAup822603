@@ -10,9 +10,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import joe.entwa.bus.AppointmentService;
+import joe.entwa.ent.Account;
 import joe.entwa.ent.Appointment;
 import joe.entwa.login.LoginSession;
 
@@ -28,6 +31,8 @@ public class AppointmentsList {
     private LoginSession loginSession;
     private List<Appointment> appointments = new ArrayList<>();
     private DateTimeFormatter ukDate = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+    @EJB
+    private AppointmentService as;
     
     /**
      * Creates a new instance of AppointmentsList
@@ -50,11 +55,31 @@ public class AppointmentsList {
         setOwn.addAll(setAtt);
         
         //Returns the union of the two sets as the expected list type.
+        appointments.clear();
         appointments.addAll(setOwn);
+        
         return appointments;
     }
 
     public DateTimeFormatter getUkDate() {
         return ukDate;
+    }
+    
+    /**
+     * Method to cancel an appointment when clicked. Checks that the current account is the owner of the appointment.
+     * If the account is the owner, cancels the appointment. Otherwise notifies the user that they cannot cancel an appointment they do not own.
+     * @param a the clicked appointment entity
+     * @return a string to reload the list of appointments.
+     */
+    public String cancelAppointment(Appointment a) {
+        if (a.getOwner() == loginSession.getUser()) {
+            Account user = as.cancelAppointment(a, loginSession.getUser());
+            loginSession.setUser(user);
+            return "";
+        }
+        else {
+            //Only the owner may cancel an appointment
+            return "";
+        }
     }
 }

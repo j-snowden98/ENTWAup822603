@@ -37,6 +37,14 @@
                 <b:dataTableColumn value="#{a.appEnd.toLocalTime()}" label="End Time"/>
 
                 <b:dataTableColumn value="#{a.owner.username}" label="Owner"/>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cancel"/>
+                    </f:facet>
+
+                    <b:commandButton id="addThisAccount" action="#{appointmentsList.cancelAppointment(a)}" value="Cancel"/>
+                </h:column>
             </b:dataTable>
         </h:form>
     </h:body>
