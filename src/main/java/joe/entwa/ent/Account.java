@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -70,13 +71,15 @@ public class Account implements Serializable {
      * This field maintains a list of this account's contacts; a list of other accounts which they have
      * added to their contacts list.
      */
-    @ManyToMany 
+    @ManyToMany
+    @OrderBy("forename ASC")
     private List<Account> contacts = new ArrayList<>();
     
     /**
      * This field represents a collection of appointments which this account owns, meaning that they created the appointment
      */
     @OneToMany(mappedBy = "owner")
+    @OrderBy("appStart ASC")
     private List<Appointment> ownedAppointments = new ArrayList<>();
     
     /**
@@ -84,6 +87,7 @@ public class Account implements Serializable {
      * is also in the list of participants in each of the appointments in this field
      */
     @ManyToMany(mappedBy = "participants")
+    @OrderBy("appStart ASC")
     private List<Appointment> attendAppointments = new ArrayList<>();
     
     

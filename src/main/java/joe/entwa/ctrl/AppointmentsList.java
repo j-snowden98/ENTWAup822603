@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -84,7 +85,7 @@ public class AppointmentsList {
      * @return a string to reload the list of appointments.
      */
     public String cancelAppointment(Appointment a) {
-        if (a.getOwner() == loginSession.getUser()) {
+        if (Objects.equals(a.getOwner().getId(), loginSession.getUser().getId())) {
             Account user = as.cancelAppointment(a, loginSession.getUser());
             loginSession.setUser(user);
             return "";
