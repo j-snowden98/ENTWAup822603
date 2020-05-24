@@ -22,7 +22,7 @@ import javax.persistence.NamedQuery;
  * @author Joe
  */
 @Entity
-@NamedQuery(name = "Appointment.timeClash", query = "SELECT a FROM Appointment a INNER JOIN a.participants u WHERE (u.username = ?1) AND (a.appStart BETWEEN ?2 AND ?3 OR a.appEnd BETWEEN ?2 AND ?3)")
+@NamedQuery(name = "Appointment.timeClash", query = "SELECT a FROM Appointment a INNER JOIN a.participants u WHERE (u.username = ?1) AND ((a.appStart BETWEEN ?2 AND ?3) OR (a.appEnd BETWEEN ?2 AND ?3) OR (a.appStart <= ?2 AND a.appEnd >= ?2))")
 public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
